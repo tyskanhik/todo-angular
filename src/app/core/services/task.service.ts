@@ -10,7 +10,8 @@ export class TaskService {
   /**
    * Сигнал с задачами
    */
-  private tasks = signal<Task[]>(this.loadInitialTasks());
+  private _tasks = signal<Task[]>(this.loadInitialTasks());
+  public tasks = this._tasks.asReadonly();
 
   /**
    * загружаем данные если они имеются
@@ -31,7 +32,7 @@ export class TaskService {
       createdAt: new Date(),
       ...task
     };
-    this.tasks.update(task => [...task, newTask]);
+    this._tasks.update(task => [...task, newTask]);
   };
 
   /**
@@ -40,7 +41,7 @@ export class TaskService {
    * @param updatedTask 
    */
   updateTask(id: string, updatedTask: Partial<Task>) {
-    this.tasks.update(tasks => 
+    this._tasks.update(tasks => 
       tasks.map(task => task.id === id ? {...task, ...updatedTask} : task)
     )
   };
@@ -50,7 +51,7 @@ export class TaskService {
    * @param id 
    */
   deleteTask(id: string) {
-    this.tasks.update(tasks => tasks.filter(t => t.id !== id));
+    this._tasks.update(tasks => tasks.filter(t => t.id !== id));
   };
 
   /**
@@ -58,6 +59,6 @@ export class TaskService {
    * @param id 
    */
   getTaskById(id: string): Task | undefined  {
-    return this.tasks().find(t => t.id === id);
+    return this._tasks().find(t => t.id === id);
   };
 }
