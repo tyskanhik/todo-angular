@@ -50,6 +50,9 @@ export class TaskListComponent {
 
   navigateToAdd() {
     this.router.navigate(['/'])
+    this.taskService.addTask({
+      title: 'sdf'
+    })
   }
 
    get emptyStateMessage(): string {

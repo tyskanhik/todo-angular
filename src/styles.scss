@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+
+@use 'sass:map';
+@use './styles/themes' as *;
+@use './styles/variables' as vars;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+// Типографика
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: map.get(vars.$spacers, 3);
+  font-weight: vars.$font-weight-bold;
+  line-height: vars.$line-height-sm;
+}
+
+h1 { font-size: vars.$font-size-xxl; }
+h2 { font-size: vars.$font-size-xl; }
+h3 { font-size: vars.$font-size-lg; }
+
+// Ссылки
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
+  
+  &:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+  }
+}

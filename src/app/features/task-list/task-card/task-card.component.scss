@@ -1,0 +1,146 @@
+@use '../../../../styles/variables' as vars;
+@use '../../../../styles/themes' as *;
+@use 'sass:map';
+
+
+.task-card {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: map.get(vars.$spacers, 3);
+  box-shadow: var(--box-shadow-md);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: block;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow);
+    border-color: var(--color-primary);
+  }
+
+  &.completed {
+    opacity: 0.7;
+    background-color: var(--color-bg);
+
+    .task-title {
+      text-decoration: line-through;
+      color: var(--color-text-secondary);
+    }
+  }
+}
+
+.task-header {
+  display: flex;
+  align-items: center;
+  gap: map.get(vars.$spacers, 4);
+  width: 100%;
+}
+
+.task-checkbox {
+  appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--color-border);
+  border-radius: vars.$border-radius-sm;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  margin: 0;
+
+  &:hover {
+    border-color: var(--color-primary);
+  }
+
+  &:checked {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    position: relative;
+
+    &::after {
+      content: "✓";
+      color: white;
+      font-size: 0.75rem;
+      position: absolute;
+    }
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+  }
+}
+
+.task-title {
+  margin: 0;
+  font-weight: vars.$font-weight-medium;
+  color: var(--color-text);
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  color: var(--color-danger);
+  font-size: var(--font-size-base);
+  line-height: 1;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  padding: 0;
+
+  &:hover {
+    background-color: var(--color-danger);
+    color: white;
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+// Анимация при изменении состояния
+.task-card {
+  &:not(.completed) {
+    animation: pulse 2s infinite;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: var(--box-shadow-sm);
+  }
+  50% {
+    box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.1);
+  }
+  100% {
+    box-shadow: var(--box-shadow-sm);
+  }
+}
+
+// Адаптивность
+@media (max-width: map.get(vars.$breakpoints, sm)) {
+  .task-header {
+    gap: map.get(vars.$spacers, 2);
+  }
+
+  .task-title {
+    font-size: 0.9rem;
+  }
+}

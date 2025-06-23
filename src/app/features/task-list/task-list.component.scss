@@ -1,0 +1,125 @@
+@use '../../../styles/variables' as vars;
+@use '../../../styles/themes' as *;
+@use 'sass:map';
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: map.get(vars.$spacers, 4);
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: map.get(vars.$spacers, 4);
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: map.get(vars.$spacers, 3);
+    flex-wrap: wrap;
+  }
+}
+
+.add-button {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: map.get(vars.$spacers, 2) map.get(vars.$spacers, 4);
+  border-radius: vars.$border-radius-xl;
+  font-size: var(--font-size-base);
+  font-weight: vars.$font-weight-medium;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--box-shadow-md);
+
+  &:hover {
+    background-color: var(--color-primary-hover);
+    transform: scale(1.05);
+    box-shadow: var(--box-shadow);
+  }
+
+  &:active {
+    transform: scale(1);
+    box-shadow: var(--box-shadow-md);
+  }
+}
+
+.filters {
+  position: relative;
+  min-width: 200px;
+
+  &-select {
+    appearance: none;
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: map.get(vars.$spacers, 2) map.get(vars.$spacers, 4);
+    padding-right: map.get(vars.$spacers, 6);
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-shadow: var(--box-shadow-md);
+
+    &:hover {
+      border-color: var(--color-primary);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px rgba(var(--color-primary), 0.2);
+    }
+
+    // Кастомная стрелка
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236b7280' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right map.get(vars.$spacers, 2) center;
+    background-size: 16px;
+  }
+}
+
+.task-list {
+  display: grid;
+  gap: map.get(vars.$spacers, 3);
+  grid-template-columns: 1fr;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.empty-state {
+  text-align: center;
+  padding: map.get(vars.$spacers, 5) 0;
+  color: var(--color-text-secondary);
+  font-size: 1.4rem;
+  animation: fadeIn 0.5s ease-out;
+}
+
+// Анимации
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Адаптивность
+@media (max-width: map.get(vars.$breakpoints, sm)) {
+  .control__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .add-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .filters {
+    width: 100%;
+  }
+}
