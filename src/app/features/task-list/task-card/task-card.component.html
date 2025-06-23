@@ -1,0 +1,10 @@
+<div class="task-card" [class.completed]="task.completed">
+  <div class="task-header">
+    <input type="checkbox" [checked]="task.completed" (change)="toggle.emit(!task.completed)" class="task-checkbox"
+      (click)="$event.stopPropagation()">
+    <h3 class="task-title">{{ task.title }}</h3>
+    <button (click)="delete.emit(); $event.stopPropagation()" class="delete-button">
+      ×
+    </button>
+  </div>
+</div>
