@@ -1,0 +1,95 @@
+// Светлая тема
+$light-theme: (
+  // Основные цвета
+  'color-primary': #4361ee,
+  'color-primary-hover': #3a56d4,
+  'color-danger': #f72585,
+  'color-danger-hover': #e5177b,
+  'color-success': #4cc9f0,
+  'color-success-hover': #2bb4e8,
+  'color-warning': #f8961e,
+  'color-warning-hover': #e68a17,
+  
+  // Текст
+  'color-text': #2b2d42,
+  'color-text-secondary': #6c757d,
+  
+  // Фоны
+  'color-bg': #f8f9fa,
+  'color-bg-secondary': #e9ecef,
+  'color-bg-tertiary': #dee2e6,
+  
+  // Границы
+  'color-border': #2f6193,
+  
+  // Тени
+  'box-shadow': 0 1px 3px rgba(0, 0, 0, 0.08),
+  'box-shadow-md': 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  
+  // Типографика
+  'font-family-base': ('Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif),
+  'font-family-mono': ('Roboto Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace),
+  
+  // Остальные параметры
+  'font-size-base': 1rem,
+  'font-weight-normal': 400,
+  'line-height-base': 1.6,
+  'spacer': 1rem,
+  'border-radius': 0.5rem
+);
+
+// Темная тема
+$dark-theme: (
+  // Основные цвета
+  'color-primary': #4895ef,
+  'color-primary-hover': #3a7bc8,
+  'color-danger': #ff7096,
+  'color-danger-hover': #ff477e,
+  'color-success': #4cc9f0,
+  'color-success-hover': #38b6db,
+  'color-warning': #f9c74f,
+  'color-warning-hover': #f8b836,
+  
+  // Текст
+  'color-text': #f8f9fa,
+  'color-text-secondary': #adb5bd,
+  
+  // Фоны
+  'color-bg': #212529,
+  'color-bg-secondary': #343a40,
+  'color-bg-tertiary': #495057,
+  
+  // Границы
+  'color-border': #6ac3a0,
+  
+  // Тени
+  'box-shadow': 0 1px 3px rgba(0, 0, 0, 0.2),
+  'box-shadow-md': 0 4px 6px -1px rgb(0 96 69),
+  
+  // Типографика (оставляем как в светлой)
+  'font-family-base': ('Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif),
+  'font-family-mono': ('Roboto Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace),
+  
+  // Остальные параметры
+  'font-size-base': 1rem,
+  'font-weight-normal': 400,
+  'line-height-base': 1.6,
+  'spacer': 1rem,
+  'border-radius': 0.5rem
+);
+
+:root {
+  --color-text-rgb: 248, 249, 250;
+  
+  @each $name, $value in $dark-theme {
+    --#{$name}: #{$value};
+  }
+}
+
+[data-theme="light"] {
+  --color-text-rgb: 43, 45, 66;
+  
+  @each $name, $value in $light-theme {
+    --#{$name}: #{$value};
+  }
+}
