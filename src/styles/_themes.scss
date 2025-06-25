@@ -81,15 +81,15 @@ $dark-theme: (
 :root {
   --color-text-rgb: 248, 249, 250;
   
-  @each $name, $value in $dark-theme {
+  @each $name, $value in $light-theme {
     --#{$name}: #{$value};
   }
 }
 
-[data-theme="light"] {
+[todo-data-theme="dark"] {
   --color-text-rgb: 43, 45, 66;
   
-  @each $name, $value in $light-theme {
+  @each $name, $value in $dark-theme {
     --#{$name}: #{$value};
   }
 }

@@ -10,6 +10,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: map.get(vars.$spacers, 4);
+  padding-top: map.get(vars.$spacers, 6);
 
   &__actions {
     display: flex;

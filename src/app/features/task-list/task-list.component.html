@@ -1,4 +1,3 @@
-
 <div class="control">
   <div class="control__actions">
     <button type="button" class="add-button" (click)="navigateToAdd()">+ Добавить задачу</button>
@@ -16,6 +15,7 @@
         [task]="task"
         (toggle)="chekedCompleted(task.id, task)"
         (delete)="deleteTask(task.id)"
+        (click)="navigatePreview(task.id)"
       ></app-task-card>
     } @empty {
       <div class="empty-state"> {{ emptyStateMessage }} </div>
