@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { TaskListComponent } from "./features/task-list/task-list.component";
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { ThemeToggleComponent } from "./shared/theme-toggle/theme-toggle.component";
 
 @Component({
   selector: 'app-root',
-  imports: [TaskListComponent],
+  imports: [RouterOutlet, RouterModule, ThemeToggleComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   standalone: true
