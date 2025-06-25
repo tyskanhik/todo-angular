@@ -20,8 +20,8 @@
             "outputPath": "dist",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "baseHref": "/",
-            "deployUrl": "/",
+            "baseHref": "/todo-angular/",
+            "deployUrl": "/todo-angular/",
             "polyfills": [
               "zone.js"
             ],
