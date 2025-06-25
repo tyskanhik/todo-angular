@@ -1,0 +1,74 @@
+@use '../../../styles/variables' as vars;
+@use '../../../styles/themes' as *;
+@use 'sass:map';
+
+.edit-task-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: map.get(vars.$spacers, 4);
+  transition: vars.$transition-base;
+  animation: fadeIn 0.3s ease-out forwards;
+
+  h2 {
+    color: var(--color-text);
+    margin-bottom: map.get(vars.$spacers, 4);
+    text-align: center;
+    font-size: vars.$font-size-xl;
+    font-weight: vars.$font-weight-bold;
+    padding: 0 map.get(vars.$spacers, 3);
+    word-break: break-word;
+  }
+
+  .not-found {
+    text-align: center;
+    padding: map.get(vars.$spacers, 5) 0;
+
+    h2 {
+      color: var(--color-danger);
+      margin-bottom: map.get(vars.$spacers, 4);
+    }
+
+    button {
+      padding: map.get(vars.$spacers, 3) map.get(vars.$spacers, 4);
+      background-color: var(--color-primary);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: vars.$transition-base;
+      font-size: var(--font-size-base);
+
+      &:hover {
+        background-color: var(--color-primary-hover);
+        transform: translateY(-1px);
+      }
+    }
+  }
+
+  @media (min-width: map.get(vars.$breakpoints, md)) {
+    padding: map.get(vars.$spacers, 5);
+    margin-top: map.get(vars.$spacers, 4);
+  }
+
+  @media (max-width: map.get(vars.$breakpoints, sm)) {
+    border-radius: 0;
+    padding: map.get(vars.$spacers, 3);
+    box-shadow: none;
+
+    h2 {
+      font-size: vars.$font-size-lg;
+      margin-bottom: map.get(vars.$spacers, 3);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
