@@ -1,6 +1,7 @@
 @use '../styles/themes' as *;
 
 .content {
+  position: relative;
   display: flex;
   justify-content: center;
   max-width: 800px;

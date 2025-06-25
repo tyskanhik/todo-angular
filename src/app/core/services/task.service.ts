@@ -1,23 +1,28 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { effect, inject, Injectable, signal } from '@angular/core';
 import { Task } from '../models/task.model';
 import { StorajeUtil } from '../utils/storage.util';
 
 @Injectable({ providedIn: 'root' })
 export class TaskService {
-  private readonly storajeKey: string = 'task';
+  private readonly storageKey: string = 'task';
   private storage = inject(StorajeUtil);
 
-  /**
-   * Сигнал с задачами
-   */
   private _tasks = signal<Task[]>(this.loadInitialTasks());
   public tasks = this._tasks.asReadonly();
+
+  constructor() {
+    effect(() => {
+      const currentTasks = this._tasks();
+      this.storage.set(this.storageKey, currentTasks as never);
+      console.log('Tasks auto-saved to localStorage');
+    });
+  }
 
   /**
    * загружаем данные если они имеются
    */
   private loadInitialTasks(): Task[] | [] {
-    const data = this.storage.get<Task[]>(this.storajeKey);
+    const data = this.storage.get<Task[]>(this.storageKey);
     return data ? data : [];
   };
 
