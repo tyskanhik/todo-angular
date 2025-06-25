@@ -1,0 +1,41 @@
+@use '../../../styles/variables' as vars;
+@use '../../../styles/themes' as *;
+@use 'sass:map';
+
+.add-task-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: map.get(vars.$spacers, 4);
+  transition: vars.$transition-base;
+  animation: fadeIn 0.3s ease-out forwards;
+
+  h2 {
+    color: var(--color-text);
+    margin-bottom: map.get(vars.$spacers, 4);
+    text-align: center;
+    font-size: vars.$font-size-xl;
+    font-weight: vars.$font-weight-bold;
+  }
+
+  @media (min-width: map.get(vars.$breakpoints, md)) {
+    padding: map.get(vars.$spacers, 5);
+    margin-top: map.get(vars.$spacers, 4);
+  }
+
+  @media (max-width: map.get(vars.$breakpoints, sm)) {
+    border-radius: 0;
+    padding: map.get(vars.$spacers, 3);
+    box-shadow: none;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
